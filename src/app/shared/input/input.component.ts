@@ -10,6 +10,7 @@ export class InputComponent {
 
   @Input() label: string | undefined;
   @Input() control!: FormControl;
+  @Input() inputType: string | undefined;
 
   showErrors() {
     const {dirty, touched, errors} = this.control;
