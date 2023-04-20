@@ -13,4 +13,8 @@ export class AppComponent {
   constructor(private auth: AuthService) {
     this.signedin$ = this.auth.signedin$;
   }
+
+  ngOnInit() {
+    this.auth.checkAuth().subscribe(() => {});
+  }
 }
