@@ -29,8 +29,15 @@ export class SigninComponent {
       return;
     }
 
-    this.auth.signin(this.authForm.value as SigninCredentials).subscribe(() => {
-      //
-    });
+    this.auth.signin(this.authForm.value as SigninCredentials).subscribe({
+      next: () => {
+
+      },
+      error: ({error}) => {
+        if (error.username || error.password) {
+          this.authForm.setErrors({credentials: true});
+        }
+      }
+    })
   }
 }
