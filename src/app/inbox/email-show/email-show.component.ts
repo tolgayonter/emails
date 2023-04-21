@@ -18,20 +18,4 @@ export class EmailShowComponent {
       this.email = email;
     });
   }
-
-  ngOnInit() {
-    // email starts undefined, so we need a resolver.
-    // this.route.params
-    //   .pipe(
-    //     switchMap(({ id }) => {
-    //       return this.emailService.getEmail(id);
-    //     })
-    //   )
-    //   .subscribe((email) => {
-    //     this.email = email;
-    //   });
-
-    // use of snapshot.
-    // console.log(this.route.snapshot.params['id'])
-  }
 }
