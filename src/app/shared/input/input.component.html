@@ -1,11 +1,20 @@
 <div class="field">
-  <label>{{label}}</label>
-  <input [type]="inputType" [formControl]="$any(control)"/>
+  <label>{{ label }}</label>
+
+  <input
+    *ngIf="controlType === 'input'"
+    [type]="inputType"
+    [formControl]="$any(control)"
+  />
+
+  <textarea
+    *ngIf="controlType === 'textarea'"
+    [formControl]="control"
+  ></textarea>
 
   <div *ngIf="showErrors()" class="ui pointing red basic label">
-    <p *ngIf="control.errors?.['required']">
-      Value is required
-    </p>
+    <p *ngIf="control.errors?.['required']">Value is required</p>
+    <p *ngIf="control.errors?.['email']">Enter a valid email</p>
     <p *ngIf="control.errors?.['minlength']">
       Value you entered is
       {{control.errors?.['minlength'].actualLength}}
@@ -20,12 +29,8 @@
       {{control.errors?.['maxlength'].requiredLength}}
       characters.
     </p>
-    <p *ngIf="control.errors?.['pattern']">
-      Invalid format
-    </p>
-    <p *ngIf="control.errors?.['nonUniqueUsername']">
-      Username is taken
-    </p>
+    <p *ngIf="control.errors?.['pattern']">Invalid format</p>
+    <p *ngIf="control.errors?.['nonUniqueUsername']">Username is taken</p>
     <p *ngIf="control.errors?.['noConnection']">
       Can't tell if username is taken
     </p>
