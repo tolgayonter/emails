@@ -13,7 +13,7 @@ export class EmailReplyComponent {
 
   constructor(private emailService: EmailService) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     const text = this.email.text.replace(/\n/gi, '\n> ');
 
     this.email = {

@@ -80,11 +80,13 @@ export class AuthService {
   }
 
   signin(credentials: SigninCredentials) {
-    return this.http.post<SigninResponse>(`${this.rootUrl}/auth/signin`, credentials).pipe(
-      tap(({ username }) => {
-        this.signedin$.next(true);
-        this.username = username;
-      })
-    );
+    return this.http
+      .post<SigninResponse>(`${this.rootUrl}/auth/signin`, credentials)
+      .pipe(
+        tap(({ username }) => {
+          this.signedin$.next(true);
+          this.username = username;
+        })
+      );
   }
 }

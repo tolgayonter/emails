@@ -14,14 +14,10 @@
   </app-input>
 
   <div *ngIf="authForm.errors" class="ui red basic label">
-    <p *ngIf="authForm.errors?.['credentials']">
-      Invalid username or password
-    </p>
+    <p *ngIf="authForm.errors?.['credentials']">Invalid username or password</p>
   </div>
 
   <div>
-    <button class="ui submit button primary">
-      Submit
-    </button>
+    <button class="ui submit button primary">Submit</button>
   </div>
 </form>

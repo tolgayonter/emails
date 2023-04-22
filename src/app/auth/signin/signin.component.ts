@@ -34,11 +34,11 @@ export class SigninComponent {
       next: () => {
         this.router.navigateByUrl('/inbox');
       },
-      error: ({error}) => {
+      error: ({ error }) => {
         if (error.username || error.password) {
-          this.authForm.setErrors({credentials: true});
+          this.authForm.setErrors({ credentials: true });
         }
-      }
-    })
+      },
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService, SignupCredentials } from '../auth.service';
 
 import { MatchPassword } from '../validators/match-password';
@@ -9,34 +9,36 @@ import { UniqueUsername } from '../validators/unique-username';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-
-  authForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern(/^[a-z0-9]+$/)
-    ], [
-      this.uniqueUsername.validate
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(20),
-    ]),
-    passwordConfirmation: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(20),
-    ])
-  }, {
-    validators: [
-      this.matchPassword.validate
-    ]
-  })
+  authForm = new FormGroup(
+    {
+      username: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.pattern(/^[a-z0-9]+$/),
+        ],
+        [this.uniqueUsername.validate]
+      ),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+      ]),
+      passwordConfirmation: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+      ]),
+    },
+    {
+      validators: [this.matchPassword.validate],
+    }
+  );
 
   constructor(
     private matchPassword: MatchPassword,
@@ -46,24 +48,23 @@ export class SignupComponent {
   ) {}
 
   onSubmit() {
-
     if (this.authForm.invalid) {
       return;
     }
 
-    this.authService.signup(this.authForm.value as SignupCredentials)
+    this.authService
+      .signup(this.authForm.value as SignupCredentials)
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/inbox');
         },
         error: (err) => {
-          if(!err.status) {
-            this.authForm.setErrors({noConnection: true});
+          if (!err.status) {
+            this.authForm.setErrors({ noConnection: true });
           } else {
-            this.authForm.setErrors({unknownError: true})
+            this.authForm.setErrors({ unknownError: true });
           }
-        }
+        },
       });
   }
-
 }

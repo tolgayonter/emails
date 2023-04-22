@@ -5,11 +5,10 @@ import { EmailService } from './email.service';
 import { EMPTY, catchError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailResolverService implements Resolve<Email> {
-
-  constructor(private emailService: EmailService, private router: Router) { }
+  constructor(private emailService: EmailService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot) {
     const { id } = route.params;

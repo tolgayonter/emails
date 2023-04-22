@@ -10,9 +10,7 @@ import { Email } from '../email';
 export class EmailShowComponent {
   email: Email;
 
-  constructor(
-    private route: ActivatedRoute,
-  ) {
+  constructor(private route: ActivatedRoute) {
     this.email = route.snapshot.data['email'];
     this.route.data.subscribe(({ email }) => {
       this.email = email;
